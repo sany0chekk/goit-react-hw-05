@@ -1,0 +1,30 @@
+import { Route, Routes } from "react-router-dom";
+import Navigation from "./Navigation";
+import { lazy, Suspense } from "react";
+
+const HomePage = lazy(() => import("../pages/HomePage"));
+const MoviesPage = lazy(() => import("../pages/MoviesPage"));
+const MovieDetailsPage = lazy(() => import("../pages/MovieDetailsPage"));
+
+const App = () => {
+  return (
+    <div className="max-w-6xl mx-auto p-4 flex flex-col gap-4">
+      <Navigation />
+
+      <div className="bg-neutral-700 rounded-md p-4">
+        <Suspense fallback="Loading...">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/movies" element={<MoviesPage />} />
+            <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
+              <Route path="cast" />
+              <Route path="reviews" />
+            </Route>
+          </Routes>
+        </Suspense>
+      </div>
+    </div>
+  );
+};
+
+export default App;
