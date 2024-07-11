@@ -23,6 +23,8 @@ const MovieDetailsPage = () => {
   const backLinkRef = useRef(location.state ?? "/movies");
 
   useEffect(() => {
+    if (!movieId) return;
+
     const fetchDetails = async () => {
       try {
         const response = await getMovieDetails(movieId);

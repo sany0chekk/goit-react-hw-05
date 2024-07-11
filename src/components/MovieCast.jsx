@@ -10,6 +10,8 @@ const MovieCast = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    if (!movieId) return;
+
     const fetchMovieCast = async () => {
       try {
         setIsLoading(true);

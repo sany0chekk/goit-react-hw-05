@@ -16,7 +16,7 @@ const MoviesPage = () => {
     const fetchSearchMovies = async () => {
       try {
         setIsLoading(true);
-        const response = await getSearchMovies(searchParams);
+        const response = await getSearchMovies(searchValue);
         setMovies(response.results);
       } catch (error) {
         console.log(error);
@@ -26,7 +26,7 @@ const MoviesPage = () => {
     };
 
     fetchSearchMovies();
-  }, [searchParams]);
+  }, [searchValue]);
 
   const handleSearchSubmit = (query) => {
     searchParams.set("movie", query);

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getMovieReviews } from "../api/movies-api";
+
 import Loader from "./Loader";
 
 const MovieReviews = () => {
@@ -10,6 +11,8 @@ const MovieReviews = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    if (!movieId) return;
+
     const fetchMovieReviews = async () => {
       try {
         setIsLoading(true);
