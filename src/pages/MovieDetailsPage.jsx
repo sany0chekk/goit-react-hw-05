@@ -2,6 +2,7 @@ import { Suspense, useEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { getMovieDetails } from "../api/movies-api";
 import MovieDetailsNavigation from "../components/MovieDetailsNavigation";
+import Loader from "../components/Loader";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -80,7 +81,7 @@ const MovieDetailsPage = () => {
       </div>
       <div className="">
         <MovieDetailsNavigation />
-        <Suspense fallback="Loading...">
+        <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
       </div>

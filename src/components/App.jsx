@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Navigation from "./Navigation";
 import { lazy, Suspense } from "react";
+import Loader from "./Loader";
 
 const HomePage = lazy(() => import("../pages/HomePage"));
 const MoviesPage = lazy(() => import("../pages/MoviesPage"));
@@ -15,7 +16,7 @@ const App = () => {
       <Navigation />
 
       <div className="bg-neutral-700 rounded-md p-4">
-        <Suspense fallback="Loading...">
+        <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/movies" element={<MoviesPage />} />
