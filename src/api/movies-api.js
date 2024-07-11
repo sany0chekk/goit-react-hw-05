@@ -28,4 +28,20 @@ const getMovieDetails = async (id) => {
   return response.data;
 };
 
-export { getTrandingMovies, getSearchMovies, getMovieDetails };
+const getMovieCast = async (id) => {
+  const response = await axios.get(`/movie/${id}/credits`);
+  return response.data;
+};
+
+const getMovieReviews = async (id) => {
+  const response = await axios.get(`/movie/${id}/reviews`);
+  return response.data;
+};
+
+export {
+  getTrandingMovies,
+  getSearchMovies,
+  getMovieDetails,
+  getMovieCast,
+  getMovieReviews,
+};

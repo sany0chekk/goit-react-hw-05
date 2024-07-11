@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import { getMovieDetails } from "../api/movies-api";
 import MovieDetailsNavigation from "../components/MovieDetailsNavigation";
@@ -42,13 +42,13 @@ const MovieDetailsPage = () => {
       >
         Go back
       </Link>
-      <div className="flex items-start gap-5 bg-neutral-600 p-4 rounded-md mb-10">
+      <div className="flex flex-col items-center md:flex-row gap-5 bg-neutral-600 p-4 rounded-md mb-10">
         <img
           src={`https://image.tmdb.org/t/p/original/${poster_path}`}
           alt=""
-          className="max-w-72 rounded-md"
+          className="block max-w-full h-auto md:max-w-72 rounded-md"
         />
-        <div>
+        <div className="flex flex-col items-center text-center md:text-left md:items-start">
           <h2 className="font-bold text-xl mb-2">{original_title}</h2>
           {genres.length > 0 && (
             <ul className="flex gap-2 mb-4">
@@ -80,7 +80,9 @@ const MovieDetailsPage = () => {
       </div>
       <div className="">
         <MovieDetailsNavigation />
-        <Outlet />
+        <Suspense fallback="Loading...">
+          <Outlet />
+        </Suspense>
       </div>
     </div>
   );

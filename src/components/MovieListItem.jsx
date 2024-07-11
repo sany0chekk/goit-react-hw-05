@@ -5,11 +5,19 @@ const MovieListItem = ({
 }) => {
   const location = useLocation();
 
+  const defaultImg =
+    "https://dummyimage.com/400x600/cdcdcd/000.jpg&text=No+poster";
+
   return (
     <li className="bg-neutral-500 rounded-md overflow-hidden flex flex-col">
       <img
-        src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+        src={
+          poster_path
+            ? `https://image.tmdb.org/t/p/original/${poster_path}`
+            : defaultImg
+        }
         alt={original_title}
+        className="max-h-sm h-full object-cover"
       />
       <div className="mt-auto p-2 flex flex-col gap-5">
         <h2 className="text-center font-bold text-lg">{original_title}</h2>
